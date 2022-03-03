@@ -1,15 +1,23 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Testing.Utilities;
+
+
+
+
 
 namespace Testing.Pages
 {
     internal class TMpage
     {
+        private object actualcode;
+
         public void CreateTM(IWebDriver driver)
         {
             IWebElement createnewbutton = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
@@ -38,70 +46,48 @@ namespace Testing.Pages
             // ckick Save button
             IWebElement Savebutton = driver.FindElement(By.Id("SaveButton"));
             Savebutton.Click();
-
-            Thread.Sleep(3000);
+            
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[1]", 3);
 
             // click on Go to last page button
+            
 
-            IWebElement Gotolastpagebutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            IWebElement Gotolastpagebutton = driver.FindElement(By.XPath("/*[@id='tmsGrid']/div[4]/a[4]/span"));
+
 
             Gotolastpagebutton.Click();
 
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 3);
 
             //check if the record created present in the table and has expected values
 
             IWebElement Actualcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (Actualcode.Text == "Teja")
-            {
-
-                Console.WriteLine("Material record created succesfully.test passed");
-            }
-            else
-            {
-                Console.WriteLine("Test failed");
-            }
+            Assert.That(Actualcode.Text == "Teja", "Actual code do not match")
         }
+
 
         public void EditTM(IWebDriver driver)
         {
-            //Check if a user is able to edit the material record created in the previous test
+            //Edit the previous created page
 
-            // click on editbox
-            Thread.Sleep(4000);
+            // Click on Edit button
 
-            IWebElement SelectEditbox = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
-            SelectEditbox.Click();
+            IWebElement Editbutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+            Editbutton.Click();
 
-            // Select Time from TypeCode dropedown
+            // Edit code Textbox
 
-            IWebElement TypeCodedropedown = driver.FindElement(By.Id("TypeCode"));
+            IWebElement CodeTextbox = driver.FindElement(By.Id("Code"));
 
+            CodeTextbox.Clear();
 
-            TypeCodedropedown.Click();
+            CodeTextbox.SendKeys("Mangam");
 
-            IWebElement SelectTime = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span"));
-
-            SelectTime.Click();
-
-
-            // Edit code
-
-            IWebElement CodeTextBox = driver.FindElement(By.Id("Code"));
-            CodeTextBox.SendKeys("Mangam");
-
-
-            // Edit description
-
-            IWebElement DescriptionTextbox = driver.FindElement(By.Id("Description"));
-            DescriptionTextbox.SendKeys("Test");
-
-            // Edit price per unit
-            IWebElement Priceperunittextbox = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
-            Priceperunittextbox.SendKeys("1911");
-
-            //Click on Savebutton
+            //Edit Description Textbox
+            IWebElement EditDescriptionTextBox = driver.FindElement(By.Id("Description"));
+            EditDescriptionTextBox.Clear();
+            EditDescriptionTextBox.SendKeys("Edit Testing");
         }
 
         public void DeleteTM(IWebDriver driver)
@@ -109,7 +95,10 @@ namespace Testing.Pages
 
         }
 
+
+
     }
-   
 }
+   
+
 

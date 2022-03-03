@@ -1,67 +1,64 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Threading;
 using Testing.Pages;
+using Testing.Utilities;
 
 namespace Testing.pages
-{
-    internal class TM_Test
+{[TestFixture]
+    internal class TM_Test:CommonDriver
+
     {
-        static void Main(string[] args)
+
+         [SetUp]
+        public void LoginFunction()
         {
             // open chrome browser
             IWebDriver driver = new ChromeDriver();
+
             driver.Manage().Window.Maximize();
 
+            // Login page object initialzation and definition
 
-            //Login page oblect initialization and definition
-            Loginpage loginpageObj = new Loginpage();
-            loginpageObj.Loginsteps(driver);
+            LoginPage loginPageObj = new LoginPage();
 
-            //Home page oblect initialization and definition
+            loginPageObj.LoginSteps(driver);
+
+
+            //Home page object initialization and definition
             Homepage homepageObj = new Homepage();
             homepageObj.GoToHomepage(driver);
-
-            //TMpage oblect initialization and definition
-            TMpage tmpageObj = new TMpage();    
+        }
+        [Test]
+        public void CreateTM_Test()
+        {
+            //TMpage object initialization and definition
+            TMpage tmpageObj = new TMpage();
             tmpageObj.CreateTM(driver);
-
-            //Edit TM oblect initialization and definition
-           
+        }
+        [Test]
+        public void EditTM_Test()
+        {
+            // Edit TM
+            TMpage tmpageObj = new TMpage();
             tmpageObj.EditTM(driver);
-
-            //Delete TM oblect initialization and definition
-
+        }
+        [Test]
+        public void DeleteTM_Test()
+        {
+            // Delete TM
+            TMpage tmpageObj = new TMpage();
             tmpageObj.DeleteTM(driver);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
+        [TearDown]
+        public void CloseTestRun()
+        {
 
         }
+         
+
     }
 }
