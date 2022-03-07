@@ -13,11 +13,10 @@ namespace Testing.Pages
     {
         public void Loginsteps(IWebDriver driver)
 
-        {
-            // launch turnup portal
+        {            // launch turnup portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
-            try
-            {
+            
+            
                 // identify username textbox and enter valid username
                 IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
                 usernameTextbox.SendKeys("hari");
@@ -27,17 +26,8 @@ namespace Testing.Pages
                 // click on login button
                 IWebElement loginbutton = driver.FindElement(By.XPath("//*[@id='loginForm']/form/div[3]/input[1]"));
                 loginbutton.Click();
-                
-
-
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("TurUp Portal login page did not launch", ex.Message);
-                throw;
-
-            }
-
+                         
+                       
 
             // check if user is login successfully
             IWebElement hellohari = driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
@@ -45,4 +35,4 @@ namespace Testing.Pages
 
         }
     }
-}
+} 

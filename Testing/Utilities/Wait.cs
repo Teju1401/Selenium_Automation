@@ -11,19 +11,20 @@ namespace Testing.Utilities
 {
     internal class Wait
     {
-        public static void WaitToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
-        {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
-            if (locator == "XPath")
-            {
+
+       public static void WaitToBeClickable(IWebDriver driver, string locator, string locatorValue, int seconds)
+       {
+        var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+
+      if (locator == "XPath")
+         {
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(locatorValue)));
-
-            }
-            if (locator == "Id")
-            {
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(locatorValue)));
-            }
+        }
+         if (locator == "Id")
+         {
+         wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(locatorValue)));
+         }
 
             if (locator == "CssSelector")
             {
@@ -37,23 +38,28 @@ namespace Testing.Utilities
 
         public static void WaitToBeVisible(IWebDriver driver, string locator, string locatorValue, int seconds)
         {
-            var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
+        var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
-            if (locator == "XPath")
-            {
+        if (locator == "XPath")
+         {
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locatorValue)));
 
-            }
-            if (locator == "Id")
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.Id(locatorValue)));
-            }
+         }
 
-            if (locator == "CssSelector")
-            {
-                wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(locatorValue)));
-            }
+        if (locator == "Id")
+         {
+         wait.Until(ExpectedConditions.ElementIsVisible(By.Id(locatorValue)));
+        }
+
+         if (locator == "CssSelector")
+         {
+          wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(locatorValue)));
+        }
+
+
         }
 
     }
 }
+
+

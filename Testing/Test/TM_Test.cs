@@ -7,45 +7,32 @@ using Testing.Pages;
 using Testing.Utilities;
 
 namespace Testing.pages
-{[TestFixture]
-    internal class TM_Test:CommonDriver
+{
+    [TestFixture]
+    [Parallelizable]
+    internal class TM_Test: CommonDriver
 
-    {
+    { 
 
-         [SetUp]
-        public void LoginFunction()
+        [Test, Order (1), Description ("check if user is able to create material report with valid data")]
+         public void CreateTM_Test()
         {
-            // open chrome browser
-            IWebDriver driver = new ChromeDriver();
+        //Home page object initialization and definition
+        Homepage homepageObj = new Homepage();
+        homepageObj.GoToHomepage(driver);
 
-            driver.Manage().Window.Maximize();
-
-            // Login page object initialzation and definition
-
-            LoginPage loginPageObj = new LoginPage();
-
-            loginPageObj.LoginSteps(driver);
-
-
-            //Home page object initialization and definition
-            Homepage homepageObj = new Homepage();
-            homepageObj.GoToHomepage(driver);
-        }
-        [Test]
-        public void CreateTM_Test()
-        {
-            //TMpage object initialization and definition
-            TMpage tmpageObj = new TMpage();
+        //TMpage object initialization and definition
+        TMpage tmpageObj = new TMpage();
             tmpageObj.CreateTM(driver);
         }
-        [Test]
+         [Test, Order (2), Description("check if user is able to edit the material")]
         public void EditTM_Test()
         {
             // Edit TM
             TMpage tmpageObj = new TMpage();
             tmpageObj.EditTM(driver);
         }
-        [Test]
+         [Test, Order (3), Description("check if user is able to delete the existing material report")]
         public void DeleteTM_Test()
         {
             // Delete TM
@@ -53,11 +40,8 @@ namespace Testing.pages
             tmpageObj.DeleteTM(driver);
 
         }
-        [TearDown]
-        public void CloseTestRun()
-        {
-
-        }
+       
+         
          
 
     }
