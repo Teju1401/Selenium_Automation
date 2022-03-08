@@ -22,13 +22,13 @@ namespace Testing.Pages
             //click on Name text box and input data
             IWebElement NameTextbox = driver.FindElement(By.Id("Name"));
             NameTextbox.Click();
-            NameTextbox.SendKeys("OOOOOO");
+            NameTextbox.SendKeys("RRR");
 
             // click on Username Text box and input data
 
             IWebElement UsernameTextbox = driver.FindElement(By.Id("Username"));
             UsernameTextbox.Click();
-            UsernameTextbox.SendKeys("TESTER1");
+            UsernameTextbox.SendKeys("TESTER2");
 
             // Click on Contact Box and provide number
 
@@ -49,45 +49,50 @@ namespace Testing.Pages
             RetypePassword.SendKeys("Tester@12345");
 
             //click on Vehicle textbox and provide data
-            IWebElement Vehicle = driver.FindElement(By.XPath("//*[@id='UserEditForm']/div/div[7]/div/span[1]/span/input"));    
+            IWebElement Vehicle = driver.FindElement(By.XPath("//*[@id='UserEditForm']/div/div[7]/div/span[1]/span/input"));
             Vehicle.Click();
-            Vehicle.SendKeys("Car");
+            Vehicle.SendKeys("Bus");
 
             // click on Groups text box and provide text
 
             //IWebElement Groups = driver.FindElement(By.XPath("//*[@id='groupList_listbox']/li[11]"));
             //Groups.Click();
-            
-            
+
+
 
             //click on save button
 
             IWebElement Savebutton = driver.FindElement(By.Id("SaveButton"));
+           
             Savebutton.Click();
+
+            Thread.Sleep(3000);
 
             // click on back to list icon
 
-            IWebElement Backtolist = driver.FindElement(By.XPath("//*[@id='container']/div/a"));
-           Backtolist.Click();
+           IWebElement Backtolist = driver.FindElement(By.XPath("//*[@id='container']/div/a"));
+            Backtolist.Click();
 
-            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='usersGrid']/div[4]/a[4]/span", 6);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id='usersGrid']/div[4]/a[4]/span", 20);
 
-            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 6);
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 20);
 
             // click on go to last page button
 
-            IWebElement Gotolastpagetab = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
+           IWebElement Gotolastpagetab = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
 
-            Gotolastpagetab.Click();
+             Gotolastpagetab.Click();
+
+            Thread.Sleep(2000);
 
             // check if the created record is present in the table with the expected value
 
             IWebElement ActualName = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement ActualUsername = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[10]/td[2]"));
+            IWebElement ActualUsername = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
 
 
-            Assert.That(ActualName.Text == "OOOOOO", "actual name do not match the record");
-            Assert.That(ActualUsername.Text == "TESTER1", "actual username do not match the record");
+            Assert.That(ActualName.Text == "RRR", "actual name do not match the record");
+            Assert.That(ActualUsername.Text == "TESTER2", "actual username do not match the record");
 
 
 
@@ -100,8 +105,8 @@ namespace Testing.Pages
         {
             // wait till the entire employee page visible
 
-            Wait.WaitToBeVisible(driver,"XPath","//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]",2);
-            
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 20);
+
 
             //GO to the laste page
             IWebElement gotolastpage = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
@@ -111,12 +116,12 @@ namespace Testing.Pages
 
             // Find the creted employee record
 
-            IWebElement CreatedEmployeerecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));   
+            IWebElement CreatedEmployeerecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (CreatedEmployeerecord.Text == "OOOOOO")
+            if (CreatedEmployeerecord.Text == "RRR")
             {
-                IWebElement SelectEdit = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[10]/td[3]/a[1]"));
-
+                IWebElement SelectEdit = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]"));
+                SelectEdit.Click();
 
             }
             else
@@ -128,7 +133,7 @@ namespace Testing.Pages
 
             IWebElement EditName = driver.FindElement(By.Id("Name"));
             EditName.Clear();
-            EditName.SendKeys("RRR");
+            EditName.SendKeys("XXX");
 
             // identify the username Textbox and edit the username
 
@@ -144,7 +149,7 @@ namespace Testing.Pages
 
             //Identify the Password Textbox
 
-            IWebElement Editpassword = driver.FindElement(By.Id("Password"));   
+            IWebElement Editpassword = driver.FindElement(By.Id("Password"));
             Editpassword.Clear();
             Editpassword.SendKeys("Password@222");
 
@@ -157,29 +162,27 @@ namespace Testing.Pages
             // click on save button
 
             IWebElement Clickonsave = driver.FindElement(By.Id("SaveButton"));
-            Clickonsave.Clear();
+            Clickonsave.Click();
 
             //Identify the back list
 
             IWebElement Backlist1 = driver.FindElement(By.XPath("//*[@id='container']/div/a"));
-            Backlist1.Clear();
+            Backlist1.Click();
 
             Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 2);
 
             // go to last page
 
             IWebElement Gotolastpage1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
-            Gotolastpage1.Clear();
+            Gotolastpage1.Click();
             Thread.Sleep(2000);
 
             // check if the Employee record is edited or not
 
             IWebElement EditName1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement EditUsername1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[10]/td[2]"));
 
-
-            Assert.That(EditName1.Text == "RRR", "actual name do not match the record");
-            Assert.That(EditUsername1.Text == "EditTester1", "actual username do not match the record");
+            Assert.That(EditName1.Text == "XXX", "actual name do not match the record");
+           
 
 
 
@@ -189,8 +192,8 @@ namespace Testing.Pages
         {
             // Delete the created Employee record
 
-            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 2);
-            
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='usersGrid']/div[3]/table/tbody/tr[1]/td[1]", 20);
+
             //GO to the laste page
 
             IWebElement gotolastpage = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
@@ -201,38 +204,40 @@ namespace Testing.Pages
 
             IWebElement CreatedEmployeerecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (CreatedEmployeerecord.Text == "RRR")
+             if (CreatedEmployeerecord.Text == "XXX")
             {
 
-                IWebElement DeleteRecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+             IWebElement DeleteRecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[2]"));
+             
+                
                 DeleteRecord.Click();
 
-                driver.SwitchTo().Alert().Accept();
+                Thread.Sleep(2000);
+
+            driver.SwitchTo().Alert().Accept();
 
 
-            }
+             }
             else
             {
-                Assert.Fail("Record to be deleted hasen't found, EmployeeRecord not deleted");
-            }
-            
+             Assert.Fail("Record to be deleted hasen't found, EmployeeRecord not deleted");
+             }
+
             //Assert that the Employee record has been deleted
 
-            driver.Navigate().Refresh();
+             driver.Navigate().Refresh();
 
             // go to last page after refresh
 
             IWebElement gotolastpage2 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[4]/a[4]/span"));
             gotolastpage2.Click();
 
-            // check if the created employee record is deleted or not
+             //check if the created employee record is deleted or not
 
-            IWebElement EditName1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement EditUsername1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[10]/td[2]"));
-
-
-            Assert.That(EditName1.Text != "RRR", "actual name do not match the record");
-            Assert.That(EditUsername1.Text != "EditTester1", "actual username do not match the record");
+            //IWebElement EditName1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+             
+            //Assert.That(EditName1.Text != "XXX", "actual name do not match the record");
+             
 
 
 

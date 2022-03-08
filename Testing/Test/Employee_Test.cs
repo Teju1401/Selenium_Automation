@@ -29,6 +29,11 @@ namespace Testing.Test
         [Test, Order(2), Description("check if user is able to edit the Employee ")]
         public void EditEmployee_Test()
         {
+
+            //Home page object initialization and definition
+            Homepage homepageObj = new Homepage();
+            homepageObj.GoToEmployeeHomepage(driver);
+
             // Edit TM
             EmployeePage EmployeePageObj = new EmployeePage();
             EmployeePageObj.EditEmployee(driver);
@@ -36,6 +41,11 @@ namespace Testing.Test
         [Test, Order(3), Description("check if user is able to delete the existing Employee")]
         public void DeleteEmployee_Test()
         {
+
+            //Home page object initialization and definition
+            Homepage homepageObj = new Homepage();
+            homepageObj.GoToEmployeeHomepage(driver);
+
             // Delete TM
             EmployeePage tmpageObj = new EmployeePage();
             tmpageObj.DeleteEmployee(driver);
