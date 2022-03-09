@@ -10,11 +10,12 @@ namespace Testing.pages
 {
     [TestFixture]
     [Parallelizable]
-    internal class TM_Test: CommonDriver
+    public class TM_Test: CommonDriver
 
     { 
         [Test, Order (1), Description ("check if user is able to create material report with valid data")]
          public void CreateTM_Test()
+       
         {
         //Home page object initialization and definition
         Homepage homepageObj = new Homepage();
@@ -33,7 +34,9 @@ namespace Testing.pages
 
             // Edit TM
             TMpage tmpageObj = new TMpage();
-            tmpageObj.EditTM(driver);
+            tmpageObj.EditTM(driver, "ABC");
+            
+
         }
          [Test, Order (3), Description("check if user is able to delete the existing material report")]
         public void DeleteTM_Test()

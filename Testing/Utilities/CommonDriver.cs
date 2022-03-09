@@ -10,7 +10,7 @@ using Testing.Pages;
 
 namespace Testing.Utilities
 {
-    internal class CommonDriver
+    public class CommonDriver
     {
         public static IWebDriver driver;
 
@@ -22,7 +22,7 @@ namespace Testing.Utilities
             // open chrome browser
             driver = new ChromeDriver();
 
-            driver.Manage().Window.Maximize();
+            
 
             // Login page object initialzation and definition
 

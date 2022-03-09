@@ -9,11 +9,15 @@ using Testing.Utilities;
 
 namespace Testing.Pages
 {
-    internal class Loginpage
+    public class Loginpage
     {
         public void Loginsteps(IWebDriver driver)
 
-        {            // launch turnup portal
+        {
+
+            driver.Manage().Window.Maximize();
+            
+            // launch turnup portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
             
             
@@ -29,8 +33,7 @@ namespace Testing.Pages
                          
                        
 
-            // check if user is login successfully
-            IWebElement hellohari = driver.FindElement(By.XPath("//*[@id='logoutForm']/ul/li/a"));
+          
 
 
         }

@@ -4,7 +4,20 @@ I would like to login into TurnUp portal and create Time and Material page and d
 
 
 Scenario: Create Time and Material Record with valid data
-	Given Loging into the Time and Material Page
-	And  navigating through Time and Material page
-	When I created Time and Material page
-	Then The Record should be created
+	Given I Logged into turnup portal successfully
+	And  I navigate through TIme and Material page
+	When I create Time and Material page
+	Then The Record should be created successfully
+
+
+	Scenario Outline: Edit Time and Material Record with valid data
+	Given I Logged into turnup portal successfully
+	And  I navigate through TIme and Material page
+	When I update '<Description>'on an Time and Material page
+	Then The Record should have the updateed '<Description>'
+
+	Examples: 
+	| Description |
+	| Feb2022     |
+	| Months      |
+	| Years       |

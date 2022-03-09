@@ -14,7 +14,7 @@ using Testing.Utilities;
 
 namespace Testing.Pages
 {
-    internal class TMpage
+    public class TMpage
     {
        
         public void CreateTM(IWebDriver driver)
@@ -57,23 +57,41 @@ namespace Testing.Pages
             Gotolastpagebutton.Click();
 
             
-
             //check if the record created present in the table and has expected values
 
-            IWebElement Actualcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement ActualTypecode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            IWebElement ActualDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-            IWebElement ActualPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
-
-
-            Assert.That(Actualcode.Text == "Teja", "Actual code do not match");
-            Assert.That(ActualTypecode.Text == "M", "Actual Typecode do not match");
-            Assert.That(ActualDescription.Text == "Testing", "Actual Description do not match");
-            Assert.That(ActualPrice.Text == "$1,401.00", "Actual Price do not match");
+           
         }
 
-        
-        public void EditTM(IWebDriver driver)
+
+        public string Getcode(IWebDriver driver)
+        {
+            IWebElement Actualcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return Actualcode.Text;
+        }
+        public string GetTypecode(IWebDriver driver)
+        {
+            IWebElement ActualTypecode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+
+            return ActualTypecode.Text;
+        }
+
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement ActualDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+
+            return ActualDescription.Text;
+        }
+        public string GetPrice(IWebDriver driver)
+        {
+            IWebElement ActualPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            return ActualPrice.Text;
+        }
+
+
+
+
+        public void EditTM(IWebDriver driver, string Description)
+
         {
             // Wait until the entire TM page is displayed
 
@@ -120,7 +138,7 @@ namespace Testing.Pages
 
             IWebElement EditDescription= driver.FindElement(By.Id("Description"));
              EditDescription.Clear();
-            EditDescription.SendKeys("NewTest");
+            EditDescription.SendKeys(Description);
 
             //Edit Pric per Unit Textbox
 
@@ -152,18 +170,25 @@ namespace Testing.Pages
 
              IWebElement Editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             IWebElement EditedTypecode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            IWebElement EditedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            
             IWebElement EditedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
 
             Assert.That(Editedcode.Text == "Mangam", "Actual code do not match");
              Assert.That(EditedTypecode.Text == "M", "Actual Typecode do not match");
-            Assert.That(EditedDescription.Text == "NewTest", "Actual Description do not match");
+          
              Assert.That(EditedPrice.Text == "$123.00", "Actual Price do not match");
 
 
 
         }
+
+        public string GetEditDescription(IWebDriver driver)
+        {
+            IWebElement EditedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            return EditedDescription.Text;
+        }
+
 
         public void DeleteTM(IWebDriver driver)
         {

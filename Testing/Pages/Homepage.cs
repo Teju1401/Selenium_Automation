@@ -8,7 +8,7 @@ using Testing.Utilities;
 
 namespace Testing.Pages
 {
-    internal class Homepage
+    public class Homepage
     {
         public void GoToHomepage(IWebDriver driver)
         {
