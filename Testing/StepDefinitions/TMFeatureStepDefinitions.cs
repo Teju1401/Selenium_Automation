@@ -54,19 +54,28 @@ namespace Testing
 
 
         }
-
-        [When(@"I update '([^']*)'on an Time and Material page")]
-        public void WhenIUpdateOnAnTimeAndMaterialPage(string p0)
+        [When(@"I update '([^']*)','([^']*)','([^']*)' on an Time and Material page")]
+        public void WhenIUpdateOnAnTimeAndMaterialPage(string p0, string p1, string p2)
         {
-            tmpageObj.EditTM(driver, p0);
-
+            tmpageObj.EditTM(driver, p0, p1, p2);   
         }
 
-        [Then(@"The Record should have the updateed '([^']*)'")]
-        public void ThenTheRecordShouldHaveTheUpdateed(string p0)
+        [Then(@"The Record should have the updateed '([^']*)','([^']*)','([^']*)'")]
+        public void ThenTheRecordShouldHaveTheUpdateed(string p0, string p1, string p2)
         {
             string EditedDescription = tmpageObj.GetEditDescription(driver);
-            Assert.That(EditedDescription == p0, "Actual Description do not match");
+            string EditCode = tmpageObj.GetEditCode(driver);
+            string EditPrice = tmpageObj.GetEditPrice(driver);
+
+            Assert.That(EditedDescription == p0);
+            Assert.That(EditCode == p1);
+            Assert.That(EditPrice == p2);
+
+
+
+
         }
+
+
     }
 }

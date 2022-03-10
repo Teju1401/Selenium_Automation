@@ -13,11 +13,11 @@ Scenario: Create Time and Material Record with valid data
 	Scenario Outline: Edit Time and Material Record with valid data
 	Given I Logged into turnup portal successfully
 	And  I navigate through TIme and Material page
-	When I update '<Description>'on an Time and Material page
-	Then The Record should have the updateed '<Description>'
+	When I update '<Description>','<Code>','<Price>' on an Time and Material page
+	Then The Record should have the updateed '<Description>','<Code>','<Price>'
 
 	Examples: 
-	| Description |
-	| Feb2022     |
-	| Months      |
-	| Years       |
+	| Description | Code | Price |
+	| Feb2022     | A    | 1     |
+	| Months      | B    | 2     |
+	| Years       | C    | 3     |

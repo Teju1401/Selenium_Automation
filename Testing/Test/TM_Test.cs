@@ -34,7 +34,7 @@ namespace Testing.pages
 
             // Edit TM
             TMpage tmpageObj = new TMpage();
-            tmpageObj.EditTM(driver, "ABC");
+            tmpageObj.EditTM(driver, "ABC","XYZ","AWS");
             
 
         }
