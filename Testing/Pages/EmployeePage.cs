@@ -87,20 +87,29 @@ namespace Testing.Pages
 
             // check if the created record is present in the table with the expected value
 
-            IWebElement ActualName = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement ActualUsername = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+            
 
 
-            Assert.That(ActualName.Text == "RRR", "actual name do not match the record");
-            Assert.That(ActualUsername.Text == "TESTER2", "actual username do not match the record");
+            
 
 
 
 
         }
+        public string GetEmployeeName(IWebDriver driver)
+        {
+            IWebElement ActualName = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return ActualName.Text;
+        }
+        public string GetEmployeeUserName(IWebDriver driver)
+        {
+            IWebElement ActualUsername = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+            return ActualUsername.Text;
+        }
 
 
-        public void EditEmployee(IWebDriver driver)
+
+        public void EditEmployee(IWebDriver driver, string Name)
 
         {
             // wait till the entire employee page visible
@@ -118,7 +127,7 @@ namespace Testing.Pages
 
             IWebElement CreatedEmployeerecord = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (CreatedEmployeerecord.Text == "RRR")
+            if (CreatedEmployeerecord.Text == Name)
             {
                 IWebElement SelectEdit = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]"));
                 SelectEdit.Click();
@@ -133,7 +142,7 @@ namespace Testing.Pages
 
             IWebElement EditName = driver.FindElement(By.Id("Name"));
             EditName.Clear();
-            EditName.SendKeys("XXX");
+            EditName.SendKeys(Name);
 
             // identify the username Textbox and edit the username
 
@@ -179,14 +188,21 @@ namespace Testing.Pages
 
             // check if the Employee record is edited or not
 
-            IWebElement EditName1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+           
 
-            Assert.That(EditName1.Text == "XXX", "actual name do not match the record");
+            
            
 
 
 
         }
+        public string EditName (IWebDriver driver)
+        {
+            IWebElement EditName1 = driver.FindElement(By.XPath("//*[@id='usersGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return EditName1.Text;
+        }
+
+
 
         public void DeleteEmployee(IWebDriver driver)
         {

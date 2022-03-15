@@ -107,7 +107,7 @@ namespace Testing.Pages
 
             Gotolastpagebutton1.Click();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             
 
 
@@ -136,15 +136,15 @@ namespace Testing.Pages
 
             //Edit Description Textbox
 
-            IWebElement EditDescription= driver.FindElement(By.Id("Description"));
-             EditDescription.Clear();
+            IWebElement EditDescription = driver.FindElement(By.Id("Description"));
+            EditDescription.Clear();
             EditDescription.SendKeys(Description);
 
             //Edit Pric per Unit Textbox
 
             IWebElement EditPriceTag = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
-             IWebElement PriceTextbox = driver.FindElement(By.Id("Price"));
-            
+            IWebElement PriceTextbox = driver.FindElement(By.Id("Price"));
+
             EditPriceTag.Click();
 
             PriceTextbox.Clear();
@@ -168,16 +168,16 @@ namespace Testing.Pages
 
             //Check if the Created record is edited or not
 
-             
+
             IWebElement EditedTypecode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            
-           
 
 
-            
-             Assert.That(EditedTypecode.Text == "M", "Actual Typecode do not match");
-          
-            
+
+
+
+            Assert.That(EditedTypecode.Text == "M", "Actual Typecode do not match");
+
+
 
 
 
@@ -202,12 +202,12 @@ namespace Testing.Pages
 
 
 
-            public void DeleteTM(IWebDriver driver)
+        public void DeleteTM(IWebDriver driver)
         {
             //Delete the Created page
 
-           
-           Wait.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[1]", 20);
+
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[1]/td[1]", 20);
 
             // click on Go To last page 
 
@@ -230,7 +230,7 @@ namespace Testing.Pages
             }
             else
             {
-               Assert.Fail("Record to be deleted hasn't found. Record not deleted");
+                Assert.Fail("Record to be deleted hasn't found. Record not deleted");
 
             }
             // Assert that the edit record has been deleted
@@ -243,14 +243,14 @@ namespace Testing.Pages
 
             //Check if the Created record is deleted or not
 
-           // IWebElement Editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            // IWebElement Editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             //IWebElement EditedTypecode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-           // IWebElement EditedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-           // IWebElement EditedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            // IWebElement EditedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            // IWebElement EditedPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
 
-          // Assert.That(Editedcode.Text != "Mangam", "Actual code hasn't been deleted");
-           // Assert.That(EditedTypecode.Text != "M", "Actual Typecode hasn't been deleted");
+            // Assert.That(Editedcode.Text != "Mangam", "Actual code hasn't been deleted");
+            // Assert.That(EditedTypecode.Text != "M", "Actual Typecode hasn't been deleted");
             //Assert.That(EditedDescription.Text != "NewTest", "Actual Description hasn't been deleted");
             //Assert.That(EditedPrice.Text != "$123.00", "Actual Price hasn't been deleted");
 
@@ -279,7 +279,7 @@ namespace Testing.Pages
 
         }
 
-        
+
     }
 }
    

@@ -36,7 +36,7 @@ namespace Testing.Test
 
             // Edit TM
             EmployeePage EmployeePageObj = new EmployeePage();
-            EmployeePageObj.EditEmployee(driver);
+            EmployeePageObj.EditEmployee(driver, "QWE");
         }
         [Test, Order(3), Description("check if user is able to delete the existing Employee")]
         public void DeleteEmployee_Test()

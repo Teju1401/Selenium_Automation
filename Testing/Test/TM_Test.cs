@@ -35,21 +35,21 @@ namespace Testing.pages
             // Edit TM
             TMpage tmpageObj = new TMpage();
             tmpageObj.EditTM(driver, "ABC","XYZ","AWS");
-            
+
 
         }
-         [Test, Order (3), Description("check if user is able to delete the existing material report")]
-        public void DeleteTM_Test()
-        {
-            //Home page object initialization and definition
-            Homepage homepageObj = new Homepage();
-            homepageObj.GoToHomepage(driver);
+        // [Test, Order (3), Description("check if user is able to delete the existing material report")]
+        //public void DeleteTM_Test()
+        //{
+        //    //Home page object initialization and definition
+        //    Homepage homepageObj = new Homepage();
+        //    homepageObj.GoToHomepage(driver);
 
-            // Delete TM
-            TMpage tmpageObj = new TMpage();
-            tmpageObj.DeleteTM(driver);
+        //    // Delete TM
+        //    TMpage tmpageObj = new TMpage();
+        //    tmpageObj.DeleteTM(driver);
 
-        }
+        //}
        
          
          

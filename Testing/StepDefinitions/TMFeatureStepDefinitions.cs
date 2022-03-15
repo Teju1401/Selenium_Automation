@@ -18,7 +18,7 @@ namespace Testing
         public void GivenILoggedIntoTurnupPortalSuccessfully()
         {
             driver = new ChromeDriver();
-                       
+
             loginPaageObj.Loginsteps(driver);
 
         }
@@ -33,7 +33,7 @@ namespace Testing
         [When(@"I create Time and Material page")]
         public void WhenICreateTimeAndMaterialPage()
         {
-            
+
             tmpageObj.CreateTM(driver);
         }
 
@@ -41,7 +41,7 @@ namespace Testing
         public void ThenTheRecordShouldBeCreatedSuccessfully()
         {
             string newcode = tmpageObj.Getcode(driver);
-            string newtypeocde = tmpageObj.GetTypecode(driver); 
+            string newtypeocde = tmpageObj.GetTypecode(driver);
             string newDescription = tmpageObj.GetDescription(driver);
             string newPrice = tmpageObj.GetPrice(driver);
 
@@ -54,10 +54,11 @@ namespace Testing
 
 
         }
+
         [When(@"I update '([^']*)','([^']*)','([^']*)' on an Time and Material page")]
         public void WhenIUpdateOnAnTimeAndMaterialPage(string p0, string p1, string p2)
         {
-            tmpageObj.EditTM(driver, p0, p1, p2);   
+            tmpageObj.EditTM(driver, p0, p1, p2);
         }
 
         [Then(@"The Record should have the updateed '([^']*)','([^']*)','([^']*)'")]
@@ -71,10 +72,8 @@ namespace Testing
             Assert.That(EditCode == p1);
             Assert.That(EditPrice == p2);
 
-
-
-
         }
+
 
 
     }
