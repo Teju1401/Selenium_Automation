@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "abb35048-1e0a-4f81-b96b-f3bff421fef1",
+		"name": "Employee CRUD E2E Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new record in database",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Assertion to check the status\r",
+							"\r",
+							"pm.test(\"Status code is check\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Assertion the check the key valu pair in response\r",
+							"pm.test(\"check key value pair in response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.data.name).to.eql(\"XYZ\");\r",
+							"    pm.expect(jsonData.data.salary).to.eql(\"12345\");\r",
+							"    pm.expect(jsonData.data.age).to.eql(\"23\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"// set the employee id environment\r",
+							"pm.test(\"set Employee ID as environment variable\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"EmployeeID\", jsonData.data.id);\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"XYZ\",\r\n    \"salary\": \"12345\",\r\n    \"age\": \"23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}api/v1/create",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"v1",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an employee record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Assertion to check the code\r",
+							"\r",
+							"pm.test(\"Status code is check\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Assertion to check the delete key value pair\r",
+							"pm.test(\"to check the delete key value pair\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"    pm.expect(jsonData.data.toString()).to.eql(\"EmployeeID\".toString());\r",
+							"    pm.expect(jsonData.message).to.eql(\"Successfully! Record has been deleted\");\r",
+							"      \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}api/v1/delete/{{EmployeeID}}",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"v1",
+						"delete",
+						"{{EmployeeID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an employee record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Assertion to check the code\r",
+							"\r",
+							"pm.test(\"Status code is check\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Assertio to check the key value response with new value\r",
+							"pm.test(\"check the key value response with new value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData.data.name).to.eql(\"XYZ\");\r",
+							"    pm.expect(jsonData.data.Lastname).to.eql(\"ABC\");\r",
+							"    pm.expect(jsonData.data.salary).to.eql(\"500\");\r",
+							"    pm.expect(jsonData.data.age).to.eql(\"23\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"XYZ\",\r\n    \"Lastname\": \"ABC\",\r\n    \"salary\": \"500\",\r\n    \"age\": \"23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}api/v1/update/{{EmployeeID}}",
+					"host": [
+						"{{BaseUrl}}api"
+					],
+					"path": [
+						"v1",
+						"update",
+						"{{EmployeeID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
